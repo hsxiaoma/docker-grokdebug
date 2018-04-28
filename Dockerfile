@@ -4,8 +4,9 @@ ENV GROK_DIR=/opt/grokdebug
 ENV GIT_COMMIT=7e108f4b0469adebea158ab68956f84b273629b6
 ENV BUILD_PACKAGES="git make gcc musl-dev linux-headers"
 
-RUN apk update && apk add $BUILD_PACKAGES && \
-	git clone https://github.com/nickethier/grokdebug.git $GROK_DIR && \
+RUN apk update && apk add $BUILD_PACKAGES 
+
+RUN git clone https://github.com/hsxiaoma/grokdebug.git $GROK_DIR && \
 	cd $GROK_DIR && \
 	git checkout $GIT_COMMIT && \
 	sed -i 's/gem '"'"'haml'"'"'/gem '"'"'haml'"'"', '"'"'4.0.7'"'"'/g' Gemfile && \
